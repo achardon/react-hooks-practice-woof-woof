@@ -16,24 +16,22 @@ function App() {
     })
   }, [])
 
-  console.log(dogs)
-
   function selectDog(dog) {
     setSelectedDog(dog)
   }
 
-  console.log(selectedDog)
-
   function updateDog(id) {
-    console.log("dog status clicked")
-    // dogs.map(dog => {
-    //   console.log(dog)
-    //   if (dog.id === id) {
-    //     // dog.isGoodDog = !isGoodDog
-    //   }
-    // })
+    const updatedDogs = dogs.map(dog => {
+      if (dog.id === id) {
+        dog.isGoodDog = !dog.isGoodDog
+      }
+      else {
+        return dog
+      }
+      return dog
+    })
+    setDogs(updatedDogs)
   }
-
 
   return (
     <div className="App">
