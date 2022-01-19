@@ -1,11 +1,11 @@
 import FilterButton from "./FilterButton";
 import DogNameContainer from "./DogNameContainer";
 
-function Header( {dogs, selectDog} ) {
+function Header( {dogs, selectDog, handleFilterClick, filter} ) {
 
     return(
         <div>
-            <FilterButton />
+            <FilterButton handleFilterClick={handleFilterClick} filter={filter}/>
             <div >
                 <DogNameContainer dogs={dogs} selectDog={selectDog} />
             </div>

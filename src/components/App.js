@@ -7,6 +7,7 @@ function App() {
 
   const [dogs, setDogs] = useState([])
   const [selectedDog, setSelectedDog] = useState('')
+  const [filter, setFilter] = useState(false)
 
   useEffect(() => {
     fetch('http://localhost:3001/pups')
@@ -33,9 +34,18 @@ function App() {
     setDogs(updatedDogs)
   }
 
+  function handleFilterClick() {
+    setFilter(!filter)
+  }
+
+  let dogsToDisplay = dogs
+  if (filter) {
+    dogsToDisplay = dogsToDisplay.filter(dog => dog.isGoodDog)
+  }
+    
   return (
     <div className="App">
-      <Header dogs={dogs} selectDog={selectDog}/>
+      <Header dogs={dogsToDisplay} selectDog={selectDog} handleFilterClick={handleFilterClick} filter={filter}/>
       {selectedDog? <Doggo selectedDog={selectedDog} onUpdateDog={updateDog}/> : null}
     </div>
   );
